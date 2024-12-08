@@ -1,0 +1,208 @@
+:root {
+    /*Primary*/
+    --red: hsl(0, 100%, 74%);
+    --green: hsl(154, 59%, 51%);
+    /*Accent*/
+    --blue: hsl(248, 32%, 49%);
+    /*Neutral*/
+    --dark-blue: hsl(249, 10%, 26%);
+    --grayish-blue: hsl(246, 25%, 77%);
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(./fonts/Poppins/Poppins-Regular.ttf);
+}
+
+body {
+    display: grid;
+    width: 100svw;
+    min-height: 100svh;
+    container: body / inline-size;
+    font-family: 'Poppins';
+    margin: 0;
+    background: url(./images/bg-intro-desktop.png) var(--red);
+}
+
+main {
+    display: grid;
+    width: 100cqw;
+    max-width: 1440px;
+    min-height: 100cqh;
+    max-height: 900px;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    place-self: center;
+    container: main / inline-size;
+    background: url(./images/bg-intro-desktop.png) var(--red);
+
+}
+
+section[class="pitch"] {
+    display: grid;
+    place-content: center;
+    width: 60%;
+    height: 80%;
+    color: white;
+    place-self: center;
+}
+
+section[class="pitch"] h1 {
+    font-weight: 700;
+    font-size: xx-large;
+}
+
+section[class="pitch"] p {
+    font-weight: 500;
+}
+
+section[class="info-card"] {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 50cqw;
+}
+
+span[class="offer"] {
+    width: 100%;
+    padding: 10px;
+    background: var(--blue);
+    color: var(--grayish-blue);
+    grid-row: 2/3;
+    grid-column: 2/9;
+    display: grid;
+    place-content: center;
+    grid-auto-flow: column;
+    box-sizing: border-box;
+}
+
+span[class="free-7-days"] {
+    font-weight: 600;
+    color: white;
+}
+
+form {
+    display: grid;
+    gap: 20px;
+    padding: 50px;
+    background: white;
+    grid-column: 2/9;
+    grid-row: 4/10;
+    border-radius: 5px;
+    container: form / inline-size;
+}
+
+input {
+    background: white;
+    outline: transparent;
+    width: 100%;
+    min-height: 50px;
+    height: 100%;
+    color: var(--dark-blue);
+    font-weight: 700;
+    box-sizing: border-box;
+    padding-inline: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+label {
+    position: relative;
+}
+
+input:focus-within {
+    border-color: var(--dark-blue);
+}
+
+input::placeholder {
+    padding-inline: 10px;
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+span[class="red"] {
+    color: var(--red);
+}
+label:has(input:user-invalid)::before {
+	content: url(./images/icon-error.svg);
+	position: absolute;
+	right: 10px;
+	bottom: 8px;
+}
+label:has(input:user-invalid)::after{
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+        color:var(--red);
+        font-style: italic;
+        font-weight: 700;
+}
+label:has(input:user-invalid) > input{
+    border-color: var(--red);
+    border-width: 2px;
+}
+
+label[for="first-name"]:has(input:user-invalid)::after {
+    content:"First Name cannot be empty";
+}
+
+label[for="last-name"]:has(input:user-invalid)::after {
+    content:"Last Name cannot be empty";
+}
+
+label[for="email-address"]:has(input:user-invalid)::after {
+    content:"Looks like this is not an email";
+}
+
+label[for="password"]:has(input:user-invalid)::after {
+    content:"Password cannot be empty";
+}
+
+button {
+    background: var(--green);
+    color: white;
+    text-transform: uppercase;
+    font-size: larger;
+    cursor: pointer;
+    height: 50px;
+    outline: var(--green);
+    border-color: var(--green);
+    outline-color: transparent;
+    border-color: transparent;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+span[class="terms"] {
+    font-size: 0.7em;
+    align-self: end;
+    text-align: center;
+}
+footer{
+    background: var(--red);
+}
+@container body (inline-size < 1000px) {
+    main {
+        max-height: unset;
+        grid-template-columns: 1fr;
+        background-image: url(./images/bg-intro-mobile.png);
+    }
+    section[class="pitch"] {
+        width: 80%;
+        height: unset;
+        text-align: center;
+    }
+    section[class="info-card"] {
+        width: 100cqw;
+    }
+    span[class="offer"] {
+        grid-column: 2/10;      
+    }
+    form {
+        grid-column: 2/10;
+        gap:30px;
+    }
+    label:has(input:user-invalid)::after {
+      font-size: 0.7em;
+    }
+}
